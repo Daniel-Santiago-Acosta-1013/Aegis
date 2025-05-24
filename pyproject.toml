@@ -33,4 +33,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-aegis = "aegis_pentest.main:main_cli" 
+aegis = "aegis_cli:main" 

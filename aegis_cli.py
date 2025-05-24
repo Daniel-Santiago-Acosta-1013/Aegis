@@ -18,8 +18,8 @@ sys.path.insert(0, str(Path(__file__).parent))
 from aegis_pentest.cli.main_cli import AegisCLI
 
 
-async def main():
-    """Punto de entrada principal - Solo modo interactivo"""
+async def run_cli():
+    """Función asíncrona para ejecutar la CLI"""
     try:
         cli_app = AegisCLI()
         await cli_app.run()
@@ -31,5 +31,10 @@ async def main():
         sys.exit(1)
 
 
+def main():
+    """Punto de entrada principal para Poetry scripts"""
+    asyncio.run(run_cli())
+
+
 if __name__ == '__main__':
-    asyncio.run(main()) 
+    main() 
