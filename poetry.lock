@@ -132,13 +132,26 @@ files = [
 frozenlist = ">=1.1.0"
 
 [[package]]
+name = "ansicon"
+version = "1.89.0"
+description = "Python wrapper for loading Jason Hood's ANSICON"
+optional = false
+python-versions = "*"
+groups = ["main"]
+markers = "platform_system == \"Windows\""
+files = [
+    {file = "ansicon-1.89.0-py2.py3-none-any.whl", hash = "sha256:f1def52d17f65c2c9682cf8370c03f541f410c1752d6a14029f97318e4b9dfec"},
+    {file = "ansicon-1.89.0.tar.gz", hash = "sha256:e4d039def5768a47e4afec8e89e83ec3ae5a26bf00ad851f914d1240b444d2b1"},
+]
+
+[[package]]
 name = "async-timeout"
 version = "5.0.1"
 description = "Timeout context manager for asyncio programs"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "python_version == \"3.10\""
+markers = "python_version < \"3.11\""
 files = [
     {file = "async_timeout-5.0.1-py3-none-any.whl", hash = "sha256:39e3809566ff85354557ec2398b55e096c8364bacac9405a7a1fa429e77fe76c"},
     {file = "async_timeout-5.0.1.tar.gz", hash = "sha256:d9321a7a3d5a6a5e187e824d2fa0793ce379a202935782d555d6e9d2735677d3"},
@@ -233,6 +246,22 @@ colorama = ["colorama (>=0.4.3)"]
 d = ["aiohttp (>=3.7.4) ; sys_platform != \"win32\" or implementation_name != \"pypy\"", "aiohttp (>=3.7.4,!=3.9.0) ; sys_platform == \"win32\" and implementation_name == \"pypy\""]
 jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
 uvloop = ["uvloop (>=0.15.2)"]
+
+[[package]]
+name = "blessed"
+version = "1.21.0"
+description = "Easy, practical library for making terminal apps, by providing an elegant, well-documented interface to Colors, Keyboard input, and screen Positioning capabilities."
+optional = false
+python-versions = ">=2.7"
+groups = ["main"]
+files = [
+    {file = "blessed-1.21.0-py2.py3-none-any.whl", hash = "sha256:f831e847396f5a2eac6c106f4dfadedf46c4f804733574b15fe86d2ed45a9588"},
+    {file = "blessed-1.21.0.tar.gz", hash = "sha256:ece8bbc4758ab9176452f4e3a719d70088eb5739798cd5582c9e05f2a28337ec"},
+]
+
+[package.dependencies]
+jinxed = {version = ">=1.1.0", markers = "platform_system == \"Windows\""}
+wcwidth = ">=0.1.4"
 
 [[package]]
 name = "certifi"
@@ -350,14 +379,14 @@ files = [
 
 [[package]]
 name = "click"
-version = "8.2.1"
+version = "8.1.8"
 description = "Composable command line interface toolkit"
 optional = false
-python-versions = ">=3.10"
+python-versions = ">=3.7"
 groups = ["main", "dev"]
 files = [
-    {file = "click-8.2.1-py3-none-any.whl", hash = "sha256:61a3265b914e850b85317d0b3109c7f8cd35a670f963866005d6ef1d5175a12b"},
-    {file = "click-8.2.1.tar.gz", hash = "sha256:27c491cc05d968d271d5a1db13e3b5a184636d9d930f148c50b038f0d0646202"},
+    {file = "click-8.1.8-py3-none-any.whl", hash = "sha256:63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2"},
+    {file = "click-8.1.8.tar.gz", hash = "sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a"},
 ]
 
 [package.dependencies]
@@ -376,13 +405,29 @@ files = [
 ]
 
 [[package]]
+name = "editor"
+version = "1.6.6"
+description = "🖋 Open the default text editor 🖋"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "editor-1.6.6-py3-none-any.whl", hash = "sha256:e818e6913f26c2a81eadef503a2741d7cca7f235d20e217274a009ecd5a74abf"},
+    {file = "editor-1.6.6.tar.gz", hash = "sha256:bb6989e872638cd119db9a4fce284cd8e13c553886a1c044c6b8d8a160c871f8"},
+]
+
+[package.dependencies]
+runs = "*"
+xmod = "*"
+
+[[package]]
 name = "exceptiongroup"
 version = "1.3.0"
 description = "Backport of PEP 654 (exception groups)"
 optional = false
 python-versions = ">=3.7"
 groups = ["dev"]
-markers = "python_version == \"3.10\""
+markers = "python_version < \"3.11\""
 files = [
     {file = "exceptiongroup-1.3.0-py3-none-any.whl", hash = "sha256:4d111e6e0c13d0644cad6ddaa7ed0261a0b36971f6d23e7ec9b4b9097da78a10"},
     {file = "exceptiongroup-1.3.0.tar.gz", hash = "sha256:b241f5885f560bc56a59ee63ca4c6a8bfa46ae4ad651af316d4e81817bb9fd88"},
@@ -553,6 +598,23 @@ files = [
 ]
 
 [[package]]
+name = "inquirer"
+version = "3.4.0"
+description = "Collection of common interactive command line user interfaces, based on Inquirer.js"
+optional = false
+python-versions = ">=3.8.1"
+groups = ["main"]
+files = [
+    {file = "inquirer-3.4.0-py3-none-any.whl", hash = "sha256:bb0ec93c833e4ce7b51b98b1644b0a4d2bb39755c39787f6a504e4fee7a11b60"},
+    {file = "inquirer-3.4.0.tar.gz", hash = "sha256:8edc99c076386ee2d2204e5e3653c2488244e82cb197b2d498b3c1b5ffb25d0b"},
+]
+
+[package.dependencies]
+blessed = ">=1.19.0"
+editor = ">=1.6.0"
+readchar = ">=4.2.0"
+
+[[package]]
 name = "jinja2"
 version = "3.1.6"
 description = "A very fast and expressive template engine."
@@ -569,6 +631,22 @@ MarkupSafe = ">=2.0"
 
 [package.extras]
 i18n = ["Babel (>=2.7)"]
+
+[[package]]
+name = "jinxed"
+version = "1.3.0"
+description = "Jinxed Terminal Library"
+optional = false
+python-versions = "*"
+groups = ["main"]
+markers = "platform_system == \"Windows\""
+files = [
+    {file = "jinxed-1.3.0-py2.py3-none-any.whl", hash = "sha256:b993189f39dc2d7504d802152671535b06d380b26d78070559551cbf92df4fc5"},
+    {file = "jinxed-1.3.0.tar.gz", hash = "sha256:1593124b18a41b7a3da3b078471442e51dbad3d77b4d4f2b0c26ab6f7d660dbf"},
+]
+
+[package.dependencies]
+ansicon = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "lxml"
@@ -720,6 +798,31 @@ htmlsoup = ["BeautifulSoup4"]
 source = ["Cython (>=3.0.11,<3.1.0)"]
 
 [[package]]
+name = "markdown-it-py"
+version = "3.0.0"
+description = "Python port of markdown-it. Markdown parsing, done right!"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "markdown-it-py-3.0.0.tar.gz", hash = "sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb"},
+    {file = "markdown_it_py-3.0.0-py3-none-any.whl", hash = "sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1"},
+]
+
+[package.dependencies]
+mdurl = ">=0.1,<1.0"
+
+[package.extras]
+benchmarking = ["psutil", "pytest", "pytest-benchmark"]
+code-style = ["pre-commit (>=3.0,<4.0)"]
+compare = ["commonmark (>=0.9,<1.0)", "markdown (>=3.4,<4.0)", "mistletoe (>=1.0,<2.0)", "mistune (>=2.0,<3.0)", "panflute (>=2.3,<3.0)"]
+linkify = ["linkify-it-py (>=1,<3)"]
+plugins = ["mdit-py-plugins"]
+profiling = ["gprof2dot"]
+rtd = ["jupyter_sphinx", "mdit-py-plugins", "myst-parser", "pyyaml", "sphinx", "sphinx-copybutton", "sphinx-design", "sphinx_book_theme"]
+testing = ["coverage", "pytest", "pytest-cov", "pytest-regressions"]
+
+[[package]]
 name = "markupsafe"
 version = "3.0.2"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -800,6 +903,18 @@ groups = ["dev"]
 files = [
     {file = "mccabe-0.7.0-py2.py3-none-any.whl", hash = "sha256:6c2d30ab6be0e4a46919781807b4f0d834ebdd6c6e3dca0bda5a15f863427b6e"},
     {file = "mccabe-0.7.0.tar.gz", hash = "sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325"},
+]
+
+[[package]]
+name = "mdurl"
+version = "0.1.2"
+description = "Markdown URL utilities"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "mdurl-0.1.2-py3-none-any.whl", hash = "sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8"},
+    {file = "mdurl-0.1.2.tar.gz", hash = "sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"},
 ]
 
 [[package]]
@@ -1010,21 +1125,6 @@ files = [
 ]
 
 [[package]]
-name = "pexpect"
-version = "4.9.0"
-description = "Pexpect allows easy control of interactive console applications."
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "pexpect-4.9.0-py2.py3-none-any.whl", hash = "sha256:7236d1e080e4936be2dc3e326cec0af72acf9212a7e1d060210e70a47e253523"},
-    {file = "pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f"},
-]
-
-[package.dependencies]
-ptyprocess = ">=0.5"
-
-[[package]]
 name = "platformdirs"
 version = "4.3.8"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
@@ -1056,6 +1156,21 @@ files = [
 [package.extras]
 dev = ["pre-commit", "tox"]
 testing = ["coverage", "pytest", "pytest-benchmark"]
+
+[[package]]
+name = "prompt-toolkit"
+version = "3.0.51"
+description = "Library for building powerful interactive command lines in Python"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "prompt_toolkit-3.0.51-py3-none-any.whl", hash = "sha256:52742911fde84e2d423e2f9a4cf1de7d7ac4e51958f648d9540e0fb8db077b07"},
+    {file = "prompt_toolkit-3.0.51.tar.gz", hash = "sha256:931a162e3b27fc90c86f1b48bb1fb2c528c2761475e57c9c06de13311c7b54ed"},
+]
+
+[package.dependencies]
+wcwidth = "*"
 
 [[package]]
 name = "propcache"
@@ -1166,18 +1281,6 @@ files = [
 ]
 
 [[package]]
-name = "ptyprocess"
-version = "0.7.0"
-description = "Run a subprocess in a pseudo terminal"
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "ptyprocess-0.7.0-py2.py3-none-any.whl", hash = "sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35"},
-    {file = "ptyprocess-0.7.0.tar.gz", hash = "sha256:5c5d0a3b48ceee0b48485e0c26037c0acd7d29765ca3fbb5cb3831d347423220"},
-]
-
-[[package]]
 name = "pycodestyle"
 version = "2.11.1"
 description = "Python style guide checker"
@@ -1200,6 +1303,21 @@ files = [
     {file = "pyflakes-3.1.0-py2.py3-none-any.whl", hash = "sha256:4132f6d49cb4dae6819e5379898f2b8cce3c5f23994194c24b77d5da2e36f774"},
     {file = "pyflakes-3.1.0.tar.gz", hash = "sha256:a0aae034c444db0071aa077972ba4768d40c830d9539fd45bf4cd3f8f6992efc"},
 ]
+
+[[package]]
+name = "pygments"
+version = "2.19.1"
+description = "Pygments is a syntax highlighting package written in Python."
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "pygments-2.19.1-py3-none-any.whl", hash = "sha256:9ea1544ad55cecf4b8242fab6dd35a93bbce657034b0611ee383099054ab6d8c"},
+    {file = "pygments-2.19.1.tar.gz", hash = "sha256:61c16d2a8576dc0649d9f39e089b5f02bcd27fba10d8fb4dcc28173f7a45151f"},
+]
+
+[package.extras]
+windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyqt6"
@@ -1385,6 +1503,18 @@ files = [
 ]
 
 [[package]]
+name = "readchar"
+version = "4.2.1"
+description = "Library to easily read single chars and key strokes"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "readchar-4.2.1-py3-none-any.whl", hash = "sha256:a769305cd3994bb5fa2764aa4073452dc105a4ec39068ffe6efd3c20c60acc77"},
+    {file = "readchar-4.2.1.tar.gz", hash = "sha256:91ce3faf07688de14d800592951e5575e9c7a3213738ed01d394dcc949b79adb"},
+]
+
+[[package]]
 name = "requests"
 version = "2.32.3"
 description = "Python HTTP for Humans."
@@ -1407,6 +1537,41 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "rich"
+version = "13.9.4"
+description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
+optional = false
+python-versions = ">=3.8.0"
+groups = ["main"]
+files = [
+    {file = "rich-13.9.4-py3-none-any.whl", hash = "sha256:6049d5e6ec054bf2779ab3358186963bac2ea89175919d699e378b99738c2a90"},
+    {file = "rich-13.9.4.tar.gz", hash = "sha256:439594978a49a09530cff7ebc4b5c7103ef57baf48d5ea3184f21d9a2befa098"},
+]
+
+[package.dependencies]
+markdown-it-py = ">=2.2.0"
+pygments = ">=2.13.0,<3.0.0"
+typing-extensions = {version = ">=4.0.0,<5.0", markers = "python_version < \"3.11\""}
+
+[package.extras]
+jupyter = ["ipywidgets (>=7.5.1,<9)"]
+
+[[package]]
+name = "runs"
+version = "1.2.2"
+description = "🏃 Run a block of text as a subprocess 🏃"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "runs-1.2.2-py3-none-any.whl", hash = "sha256:0980dcbc25aba1505f307ac4f0e9e92cbd0be2a15a1e983ee86c24c87b839dfd"},
+    {file = "runs-1.2.2.tar.gz", hash = "sha256:9dc1815e2895cfb3a48317b173b9f1eac9ba5549b36a847b5cc60c3bf82ecef1"},
+]
+
+[package.dependencies]
+xmod = "*"
+
+[[package]]
 name = "soupsieve"
 version = "2.7"
 description = "A modern CSS selector implementation for Beautiful Soup."
@@ -1419,13 +1584,28 @@ files = [
 ]
 
 [[package]]
+name = "tabulate"
+version = "0.9.0"
+description = "Pretty-print tabular data"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
+    {file = "tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
+]
+
+[package.extras]
+widechars = ["wcwidth"]
+
+[[package]]
 name = "tomli"
 version = "2.2.1"
 description = "A lil' TOML parser"
 optional = false
 python-versions = ">=3.8"
 groups = ["dev"]
-markers = "python_version == \"3.10\""
+markers = "python_version < \"3.11\""
 files = [
     {file = "tomli-2.2.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:678e4fa69e4575eb77d103de3df8a895e1591b48e740211bd1067378c69e8249"},
     {file = "tomli-2.2.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:023aa114dd824ade0100497eb2318602af309e5a55595f76b626d6d9f3b7b0a6"},
@@ -1490,6 +1670,30 @@ brotli = ["brotli (>=1.0.9) ; platform_python_implementation == \"CPython\"", "b
 h2 = ["h2 (>=4,<5)"]
 socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
+
+[[package]]
+name = "wcwidth"
+version = "0.2.13"
+description = "Measures the displayed width of unicode strings in a terminal"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "wcwidth-0.2.13-py2.py3-none-any.whl", hash = "sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859"},
+    {file = "wcwidth-0.2.13.tar.gz", hash = "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"},
+]
+
+[[package]]
+name = "xmod"
+version = "1.8.1"
+description = "🌱 Turn any object into a module 🌱"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "xmod-1.8.1-py3-none-any.whl", hash = "sha256:a24e9458a4853489042522bdca9e50ee2eac5ab75c809a91150a8a7f40670d48"},
+    {file = "xmod-1.8.1.tar.gz", hash = "sha256:38c76486b9d672c546d57d8035df0beb7f4a9b088bc3fb2de5431ae821444377"},
+]
 
 [[package]]
 name = "yarl"
@@ -1612,5 +1816,5 @@ propcache = ">=0.2.1"
 
 [metadata]
 lock-version = "2.1"
-python-versions = "^3.10"
-content-hash = "85b76a7ab62fdca39fd66d44323424079c67c5b0cf886123c723f97583f6eb65"
+python-versions = "^3.9"
+content-hash = "ed2a2485ebb671ab08a2c5fa4597ad6e363aca3f9e12cbdecaf304e43e409724"

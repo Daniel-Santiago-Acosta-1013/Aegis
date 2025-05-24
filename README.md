@@ -1,163 +1,299 @@
-# Aegis - Automatización de Pentesting Web
+# 🛡️ Aegis Pentest Automation
 
-![Aegis Logo](https://img.shields.io/badge/Aegis-Pentest%20Automation-red?style=for-the-badge)
-![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
-![Qt](https://img.shields.io/badge/Qt-6.6+-green?style=for-the-badge&logo=qt)
+Una aplicación moderna de automatización de pentesting web con **interfaz CLI interactiva enriquecida**. Actúa como wrapper inteligente de las herramientas de seguridad más actualizadas.
 
-## Descripción
+## ✨ Características
 
-Aegis es una aplicación de automatización de pentesting web desarrollada en Python que actúa como wrapper de las herramientas de seguridad más actualizadas. Proporciona una interfaz gráfica moderna basada en Qt6 para facilitar la ejecución y gestión de pruebas de penetración web.
+- 🖥️ **CLI Interactiva**: Interfaz completamente interactiva con Rich y menús intuitivos
+- 🎯 **Múltiples Tipos de Escaneo**: Rápido, completo, vulnerabilidades y sigiloso
+- 🔧 **Herramientas Integradas**: Nmap, Nuclei, Gobuster, Nikto, SQLMap y más
+- 📊 **Visualización Rica**: Tablas, progress bars, paneles y colores semánticos
+- ⚙️ **Configuración Avanzada**: Sistema de configuración YAML completo
+- 🚀 **Modo Asíncrono**: Operaciones concurrentes para mejor rendimiento
+- 📋 **Gestión de Proyectos**: Organización automática de resultados
+- 📄 **Reportes Múltiples**: HTML, JSON, XML y texto plano
 
-## Características
-
-- 🎯 **Interfaz Gráfica Moderna**: GUI basada en Qt6 con diseño intuitivo
-- 🔧 **Wrapper de Herramientas**: Integración con las mejores herramientas de pentesting
-- 📊 **Reportes Automáticos**: Generación de reportes en múltiples formatos
-- ⚡ **Ejecución Paralela**: Múltiples pruebas simultáneas
-- 🔍 **Análisis Completo**: Desde reconocimiento hasta explotación
-- 💾 **Gestión de Proyectos**: Organización y persistencia de resultados
-
-## Herramientas Integradas
-
-### Reconocimiento
-- **Nmap**: Escaneo de puertos y servicios
-- **Nuclei**: Templates de vulnerabilidades
-- **Subfinder**: Enumeración de subdominios
-- **Gobuster**: Fuzzing de directorios
-
-### Análisis de Vulnerabilidades
-- **Nikto**: Escáner de vulnerabilidades web
-- **SQLMap**: Detección de inyecciones SQL
-- **OWASP ZAP**: Proxy y escáner de seguridad
-- **Wapiti**: Auditoría de aplicaciones web
-
-### Explotación
-- **Metasploit**: Framework de explotación
-- **Burp Suite**: Herramientas de testing manual
-- **Hydra**: Ataques de fuerza bruta
-
-## Instalación
-
-### Requisitos Previos
+## 🚀 Instalación Rápida
 
 ```bash
-# macOS
-brew install python3 poetry nmap gobuster nuclei nikto
+# Clonar repositorio
+git clone https://github.com/aegis-security/aegis-pentest.git
+cd aegis-pentest
 
-# Ubuntu/Debian
-sudo apt update
-sudo apt install python3 python3-pip nmap gobuster
-pip3 install poetry
-
-# Instalar herramientas adicionales
-go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
-```
-
-### Instalación del Proyecto
-
-```bash
-# Clonar el repositorio
-git clone <repository-url>
-cd aegis-pentest-automation
-
-# Instalar dependencias con Poetry
+# Instalar dependencias con Poetry (recomendado)
 poetry install
 
-# Activar el entorno virtual
-poetry shell
+# O instalar con pip
+pip install -e .
 ```
 
-## Uso
+## 📖 Uso
 
-### Interfaz Gráfica
+### Ejecutar CLI Interactiva
 
 ```bash
-# Ejecutar la aplicación GUI
-poetry run aegis-pentest
+# Con Poetry
+poetry run python aegis_cli.py
+
+# O directamente
+python aegis_cli.py
+
+# O como script instalado
+aegis
 ```
 
-### Línea de Comandos
+### Menú Principal
 
-```bash
-# Escaneo básico
-aegis-pentest scan --target example.com
-
-# Escaneo completo con todas las herramientas
-aegis-pentest full-audit --target example.com --output report.html
-```
-
-## Estructura del Proyecto
+Al ejecutar, verás un menú interactivo con opciones:
 
 ```
-aegis-pentest-automation/
-├── aegis_pentest/
-│   ├── __init__.py
-│   ├── main.py                 # Punto de entrada principal
-│   ├── gui/
-│   │   ├── __init__.py
-│   │   ├── main_window.py      # Ventana principal de Qt
-│   │   ├── widgets/            # Widgets personalizados
-│   │   └── styles/             # Estilos CSS para Qt
-│   ├── core/
-│   │   ├── __init__.py
-│   │   ├── scanner.py          # Motor principal de escaneo
-│   │   ├── project_manager.py  # Gestión de proyectos
-│   │   └── report_generator.py # Generación de reportes
-│   ├── tools/
-│   │   ├── __init__.py
-│   │   ├── nmap_wrapper.py     # Wrapper para Nmap
-│   │   ├── nuclei_wrapper.py   # Wrapper para Nuclei
-│   │   ├── sqlmap_wrapper.py   # Wrapper para SQLMap
-│   │   └── ...                 # Otros wrappers
-│   └── utils/
-│       ├── __init__.py
-│       ├── config.py           # Configuración global
-│       └── helpers.py          # Funciones auxiliares
-├── tests/                      # Tests unitarios
-├── docs/                       # Documentación
-├── resources/                  # Recursos (iconos, templates)
-└── examples/                   # Ejemplos de uso
+╭─────────────────────────────────────────────╮
+│           🎯 Menú Principal                 │
+├─────┬───────────────────────────────────────┤
+│  1  │ Escaneo Rápido - Puertos comunes     │
+│  2  │ Escaneo Completo - Múltiples herram. │
+│  3  │ Escaneo de Vulnerabilidades - CVEs   │
+│  4  │ Escaneo Sigiloso - Evasión           │
+│  5  │ Modo Interactivo - Config. avanzada  │
+│  6  │ Estado de Herramientas               │
+│  7  │ Configuración                        │
+│  0  │ Salir                                │
+╰─────┴───────────────────────────────────────╯
 ```
 
-## Configuración
+### Flujo de Trabajo Típico
 
-El archivo de configuración se encuentra en `~/.aegis/config.yaml`:
+1. **Seleccionar tipo de escaneo**: Elige entre rápido, completo, vulnerabilidades o sigiloso
+2. **Ingresar objetivo**: IP, dominio o red (ej: `scanme.nmap.org`, `192.168.1.0/24`)
+3. **Configurar parámetros**: Puertos, opciones avanzadas según el tipo
+4. **Ejecutar escaneo**: Ver progreso en tiempo real con barras visuales
+5. **Revisar resultados**: Tablas organizadas con puertos, servicios y vulnerabilidades
+
+## 🎨 Características Visuales
+
+### Banner ASCII Artístico
+```
+    ___    __________ _____ _____
+   /   |  / ____/ __ \_   _/ ___/
+  / /| | / __/ / / / / // / \__ \ 
+ / ___ |/ /___/ /_/ _// /_____/ / 
+/_/  |_/_____/\____/___//____/  
+
+🛡️  Automatización de Pentesting Web 🛡️
+```
+
+### Visualización de Resultados
+- **Estadísticas**: Resumen ejecutivo con métricas clave
+- **Puertos**: Tabla de puertos abiertos con estados y servicios
+- **Vulnerabilidades**: Lista priorizada por severidad (Critical → Info)
+- **Servicios**: Información detallada de servicios detectados
+- **OS Detection**: Identificación del sistema operativo objetivo
+
+### Colores Semánticos
+- 🟢 **Verde**: Éxito, disponible, seguro
+- 🔴 **Rojo**: Error, crítico, no disponible
+- 🟡 **Amarillo**: Advertencia, moderado
+- 🔵 **Azul**: Información, configuración
+- 🟣 **Magenta**: Avanzado, sigiloso
+
+## 🔧 Herramientas Soportadas
+
+| Herramienta | Función | Estado |
+|-------------|---------|--------|
+| **Nmap** | Escaneo de puertos y servicios | ✅ Core |
+| **Nuclei** | Detección de vulnerabilidades | ✅ Integrado |
+| **Gobuster** | Enumeración de directorios | ✅ Integrado |
+| **Nikto** | Análisis de vulnerabilidades web | ✅ Integrado |
+| **SQLMap** | Detección de inyecciones SQL | ✅ Integrado |
+| **Hydra** | Ataques de fuerza bruta | 🔜 Próximamente |
+| **Subfinder** | Enumeración de subdominios | 🔜 Próximamente |
+
+## ⚙️ Configuración
+
+### Archivo de Configuración
+Ubicación: `~/.aegis/config.yaml`
 
 ```yaml
 tools:
   nmap:
-    path: "/usr/bin/nmap"
+    path: /usr/local/bin/nmap
     timeout: 300
-  nuclei:
-    path: "/usr/local/bin/nuclei"
-    templates_path: "~/nuclei-templates"
+    default_args: ['-sV', '-sC', '--version-light']
   
+  nuclei:
+    path: /usr/local/bin/nuclei
+    timeout: 600
+    templates_path: ~/nuclei-templates
+
 output:
-  default_format: "html"
-  save_path: "~/aegis-reports"
+  default_format: html
+  save_path: ~/aegis-reports
+  auto_save: true
 
 threading:
   max_workers: 4
+  timeout_multiplier: 1.5
 ```
 
-## Contribuir
+### Variables de Entorno
+```bash
+export AEGIS_CONFIG="/path/to/custom/config.yaml"
+export AEGIS_TOOLS_PATH="/custom/tools/path"
+export AEGIS_OUTPUT_DIR="/custom/output/path"
+```
 
-1. Fork el proyecto
-2. Crea una rama feature (`git checkout -b feature/amazing-feature`)
-3. Commit tus cambios (`git commit -m 'Add amazing feature'`)
-4. Push a la rama (`git push origin feature/amazing-feature`)
-5. Abre un Pull Request
+## 🎯 Tipos de Escaneo
 
-## Licencia
+### 1. Escaneo Rápido (5-15 min)
+- Nmap en puertos comunes (1-1000)
+- Detección básica de servicios
+- Ideal para reconocimiento inicial
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+### 2. Escaneo Completo (30-60 min)
+- Nmap en todos los puertos (1-65535)
+- Detección de OS y servicios
+- Scripts NSE opcionales
+- Gobuster para enumeración web
 
-## Descargo de Responsabilidad
+### 3. Escaneo de Vulnerabilidades (20-45 min)
+- Nuclei con templates actualizados
+- Scripts NSE de vulnerabilidades
+- SQLMap para inyecciones SQL
+- Nikto para análisis web
 
-Esta herramienta está destinada únicamente para uso educativo y pruebas de seguridad autorizadas. El uso no autorizado de esta herramienta en sistemas que no son de su propiedad es ilegal. Los desarrolladores no se responsabilizan por el mal uso de esta herramienta.
+### 4. Escaneo Sigiloso (10-30 min)
+- Técnicas de evasión
+- Timeouts extendidos
+- Fragmentación de paquetes
+- Ideal para entornos monitoreados
 
-## Soporte
+## 📊 Ejemplos de Salida
 
-- 📧 Email: support@aegis-security.com
-- 🐛 Issues: [GitHub Issues](link-to-issues)
-- 📖 Documentación: [Wiki](link-to-wiki) 
+### Estado de Herramientas
+```
+╭──────────────┬──────────────────┬──────────────────────┬─────────────────────╮
+│ Herramienta  │      Estado      │       Versión        │        Ruta         │
+├──────────────┼──────────────────┼──────────────────────┼─────────────────────┤
+│ NMAP         │  🟢 Disponible   │ Nmap version 7.95    │ /usr/local/bin/nmap │
+│ NUCLEI       │  🟢 Disponible   │ v3.0.4               │ /usr/bin/nuclei     │
+│ GOBUSTER     │ 🔴 No disponible │ N/A                  │ No encontrado       │
+╰──────────────┴──────────────────┴──────────────────────┴─────────────────────╯
+```
+
+### Resultados de Escaneo
+```
+╭────────────────────────────────────────────────────────────────────╮
+│                        📊 Estadísticas                           │
+├─────────────────┬──────────┬────────────────────────────────────────┤
+│ Puertos Escaneados │    1000    │                🔍                │
+│ Puertos Abiertos   │      8     │                🟢                │
+│ Servicios Detectados │    6     │                ⚙️                │
+│ Vulnerabilidades   │      3     │                🚨                │
+╰─────────────────┴──────────┴────────────────────────────────────────╯
+```
+
+## 🛠️ Instalación de Herramientas
+
+### Ubuntu/Debian
+```bash
+# Herramientas básicas
+sudo apt update && sudo apt install -y nmap nikto sqlmap
+
+# Gobuster
+wget https://github.com/OJ/gobuster/releases/download/v3.6.0/gobuster_Linux_x86_64.tar.gz
+tar -xzf gobuster_Linux_x86_64.tar.gz
+sudo mv gobuster /usr/local/bin/
+
+# Nuclei
+GO111MODULE=on go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+```
+
+### macOS
+```bash
+# Con Homebrew
+brew install nmap gobuster nikto sqlmap
+
+# Nuclei
+go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+```
+
+### Windows
+- Descargar binarios desde las páginas oficiales
+- Agregar al PATH del sistema
+- Configurar rutas en `~/.aegis/config.yaml`
+
+## 🚦 Troubleshooting
+
+### Herramientas No Encontradas
+```bash
+# Verificar estado
+python aegis_cli.py  # Opción 6: Estado de Herramientas
+
+# Instalar herramientas faltantes
+sudo apt install nmap nikto  # Linux
+brew install nmap nikto      # macOS
+```
+
+### Errores de Permisos
+```bash
+# Linux/macOS
+chmod +x aegis_cli.py
+sudo chown $USER:$USER ~/.aegis/
+
+# Verificar permisos de herramientas
+ls -la /usr/local/bin/nmap
+```
+
+### Problemas de Red
+- Verificar conectividad: `ping target.com`
+- Probar con diferentes objetivos
+- Revisar configuración de proxy/firewall
+
+## 🎓 Casos de Uso
+
+### Para DevSecOps
+- Integración en pipelines CI/CD
+- Auditorías automatizadas programadas
+- Generación de reportes para compliance
+
+### Para Administradores de Sistema
+- Monitoreo continuo de infraestructura
+- Validación de configuraciones de seguridad
+- Detección temprana de vulnerabilidades
+
+### Para Pentesters
+- Reconocimiento inicial automatizado
+- Enumeración comprehensiva de servicios
+- Detección de vectores de ataque
+
+### Para Analistas de Seguridad
+- Análisis de superficie de ataque
+- Correlación de vulnerabilidades
+- Reporting ejecutivo
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas! Por favor:
+
+1. Fork el repositorio
+2. Crear branch de feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit cambios (`git commit -am 'Agregar nueva funcionalidad'`)
+4. Push al branch (`git push origin feature/nueva-funcionalidad`)
+5. Abrir Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para detalles.
+
+## 🆘 Soporte
+
+- **Documentación**: [Wiki del proyecto](https://github.com/aegis-security/aegis-pentest/wiki)
+- **Issues**: [GitHub Issues](https://github.com/aegis-security/aegis-pentest/issues)
+- **Discusiones**: [GitHub Discussions](https://github.com/aegis-security/aegis-pentest/discussions)
+- **Email**: aegis@security.com
+
+---
+
+**⚠️ Nota Legal**: Esta herramienta está diseñada para profesionales de seguridad y uso educativo. Úsala únicamente en sistemas que poseas o tengas autorización explícita para probar. El uso indebido puede ser ilegal.
+
+**🛡️ Aegis Security Team - 2024** 
