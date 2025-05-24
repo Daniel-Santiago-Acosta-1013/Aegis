@@ -18,7 +18,7 @@ CLI interactiva para automatización de pentesting web. Wrapper de herramientas 
 
 ### Instalación
 ```bash
-git clone <repository-url>
+git clone git@github.com:Daniel-Santiago-Acosta-1013/Aegis.git
 cd aegis-pentest
 poetry install
 ```
