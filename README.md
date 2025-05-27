@@ -32,16 +32,16 @@ poetry run python aegis_cli.py
 
 ```
 ╭─────────────────────────────────────────────╮
-│           🎯 Menú Principal                 │
+│           🎯 Menú Principal                  │
 ├─────┬───────────────────────────────────────┤
-│  1  │ Escaneo Rápido - Puertos comunes     │
-│  2  │ Escaneo Completo - Múltiples herram. │
-│  3  │ Escaneo de Vulnerabilidades - CVEs   │
-│  4  │ Escaneo Sigiloso - Evasión           │
-│  5  │ Modo Interactivo - Config. avanzada  │
-│  6  │ Estado de Herramientas               │
-│  7  │ Configuración                        │
-│  0  │ Salir                                │
+│  1  │ Escaneo Rápido - Puertos comunes      │
+│  2  │ Escaneo Completo - Múltiples herram.  │
+│  3  │ Escaneo de Vulnerabilidades - CVEs    │
+│  4  │ Escaneo Sigiloso - Evasión            │
+│  5  │ Modo Interactivo - Config. avanzada    │
+│  6  │ Estado de Herramientas                │
+│  7  │ Configuración                          │
+│  0  │ Salir                                 │
 ╰─────┴───────────────────────────────────────╯
 ```
 
@@ -63,12 +63,12 @@ go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 
 ## 🎯 Tipos de Escaneo
 
-| Tipo | Duración | Descripción |
-|------|----------|-------------|
-| **Rápido** | 5-15 min | Puertos comunes (1-1000) |
-| **Completo** | 30-60 min | Todos los puertos + servicios |
-| **Vulnerabilidades** | 20-45 min | CVEs con Nuclei + SQLMap |
-| **Sigiloso** | 10-30 min | Técnicas de evasión |
+| Tipo                 | Duración  | Descripción                   |
+|----------------------|-----------|-------------------------------|
+| **Rápido**           | 5-15 min  | Puertos comunes (1-1000)      |
+| **Completo**         | 30-60 min | Todos los puertos + servicios |
+| **Vulnerabilidades** | 20-45 min | CVEs con Nuclei + SQLMap      |
+| **Sigiloso**         | 10-30 min | Técnicas de evasión           |
 
 ## ⚙️ Configuración
 
