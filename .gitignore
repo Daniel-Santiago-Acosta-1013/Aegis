@@ -152,7 +152,8 @@ reports/
 # Project specific
 config/local.yaml
 data/
-logs/
+logs/*.txt
+logs/*.log
 
 # Testing specific files and directories
 tests/coverage_html/

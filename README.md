@@ -9,6 +9,7 @@ CLI interactiva para automatización de pentesting web. Wrapper de herramientas 
 - **Herramientas Integradas**: Nmap, Nuclei, Gobuster, Nikto, SQLMap
 - **Visualización Rica**: Tablas, progress bars, colores semánticos
 - **Configuración YAML**: Sistema de configuración flexible
+- **Sistema de Logging**: Monitoreo en tiempo real con logs detallados
 
 ## ⚡ Instalación y Uso
 
@@ -26,6 +27,50 @@ poetry install
 ### Ejecutar
 ```bash
 poetry run python aegis_cli.py
+```
+
+## 📋 Sistema de Logging Avanzado
+
+Aegis incluye un sistema de logging completo que monitorea todas las herramientas en tiempo real.
+
+### Características del Sistema de Logs
+
+- **📊 Monitoreo en Tiempo Real**: Visualización en vivo del estado de herramientas
+- **📁 Logs Unificados**: Todos los outputs en archivos organizados
+- **🚨 Detección de Errores**: Identificación automática de fallos y timeouts
+- **⚡ Thread-Safe**: Manejo seguro de múltiples herramientas simultáneas
+- **🎯 Progreso Visual**: Barras de progreso y estados por herramienta
+
+### Ubicación de Logs
+
+```
+logs/
+├── aegis_analysis_20241225_143052.txt
+├── aegis_analysis_20241225_150230.txt
+└── README.md
+```
+
+### Contenido de los Logs
+
+Cada archivo incluye:
+- **Header**: Información de inicio del análisis
+- **Logs en Tiempo Real**: Output completo de cada herramienta
+- **Detección de Errores**: Errores y timeouts capturados
+- **Resumen por Herramienta**: Estado final, duración, y resultados
+- **Footer**: Resumen final del análisis
+
+### Ejemplo de Monitoreo en Vivo
+
+Durante la ejecución verás:
+
+```
+┌────────────────── 🔍 Monitoreo de Herramientas en Tiempo Real ──────────────────┐
+│ Herramienta │ Estado      │ Progreso              │ Última Actividad             │
+├─────────────┼─────────────┼───────────────────────┼─────────────────────────────────┤
+│ nmap        │ EJECUTANDO  │ [████████░░] 80%      │ Scanning 192.168.1.1 port 443 │
+│ nuclei      │ COMPLETADO  │ [██████████] 100%     │ Completado exitosamente       │
+│ gobuster    │ INICIANDO   │ [█░░░░░░░░░] 10%      │ Iniciando escaneo...          │
+└─────────────┴─────────────┴───────────────────────┴─────────────────────────────────┘
 ```
 
 ## 📋 Menú Principal
@@ -102,6 +147,11 @@ poetry install  # Reinstalar dependencias
 ```bash
 chmod +x aegis_cli.py
 ```
+
+**Problemas con logs:**
+- Los logs se guardan automáticamente en `logs/`
+- Verificar permisos de escritura en el directorio
+- Revisar archivo de log para detalles de errores
 
 ## 🔍 Desarrollo y Contribución
 
