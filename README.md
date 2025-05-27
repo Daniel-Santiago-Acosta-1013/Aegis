@@ -1,6 +1,6 @@
 # 🛡️ Aegis Pentest Automation
 
-CLI interactiva para automatización de pentesting web. Wrapper de herramientas de seguridad con interfaz moderna.
+CLI interactiva para automatización de pentesting web. Wrapper de herramientas de seguridad con interfaz moderna y **manejo automático de privilegios de administrador**.
 
 ## 🎯 Características
 
@@ -10,24 +10,63 @@ CLI interactiva para automatización de pentesting web. Wrapper de herramientas 
 - **Visualización Rica**: Tablas, progress bars, colores semánticos
 - **Configuración YAML**: Sistema de configuración flexible
 - **Sistema de Logging**: Monitoreo en tiempo real con logs detallados
+- **🔐 Manejo de Privilegios**: Elevación automática de permisos para herramientas que lo requieren
 
 ## ⚡ Instalación y Uso
 
 ### Requisitos
 - Python 3.9+
 - Poetry
+- Privilegios de administrador/sudo (para funcionalidad completa)
 
 ### Instalación
 ```bash
 git clone git@github.com:Daniel-Santiago-Acosta-1013/Aegis.git
-cd aegis-pentest
+cd Aegis
 poetry install
 ```
 
-### Ejecutar
+### Ejecutar (Comando Único)
 ```bash
+# Un solo comando optimizado que maneja todo automáticamente
 poetry run python aegis_cli.py
 ```
+
+**¡Eso es todo!** 🎯 El comando único:
+- ✅ Verifica dependencias automáticamente
+- 🔐 Maneja privilegios de administrador
+- 🛠️ Detecta herramientas disponibles
+- 🚀 Inicia la aplicación optimizada
+
+## 🔐 Sistema de Privilegios
+
+### ¿Por qué necesita privilegios de administrador?
+
+Aegis necesita privilegios elevados para:
+- **Escaneos SYN Stealth** (`-sS`) con Nmap
+- **Detección de Sistemas Operativos** (`-O`)
+- **Escaneos UDP** con herramientas especializadas
+- **Funcionalidades avanzadas** de pentesting
+
+### Manejo Automático de Privilegios
+
+✅ **Al inicio**, Aegis verifica automáticamente:
+- Si tienes privilegios de administrador
+- Si `sudo` está disponible
+- Solicita credenciales cuando sea necesario
+
+✅ **Durante ejecución**, las herramientas:
+- Se ejecutan con `sudo` automáticamente si lo requieren
+- Muestran claramente cuándo usan privilegios elevados
+- Manejan errores de permisos de forma inteligente
+
+### Estados de Privilegios
+
+| Estado | Descripción | Funcionalidad |
+|--------|-------------|---------------|
+| 🔐 **Administrador** | Ejecutándose como root/admin | Completa |
+| 🔑 **Sudo Disponible** | Usuario con sudo configurado | Completa (con solicitud de password) |
+| ⚠️ **Limitado** | Sin privilegios elevados | Parcial (algunos escaneos fallarán) |
 
 ## 📋 Sistema de Logging Avanzado
 
@@ -40,6 +79,7 @@ Aegis incluye un sistema de logging completo que monitorea todas las herramienta
 - **🚨 Detección de Errores**: Identificación automática de fallos y timeouts
 - **⚡ Thread-Safe**: Manejo seguro de múltiples herramientas simultáneas
 - **🎯 Progreso Visual**: Barras de progreso y estados por herramienta
+- **🔐 Log de Privilegios**: Registro de cuándo se usan permisos elevados
 
 ### Ubicación de Logs
 
@@ -56,6 +96,7 @@ Cada archivo incluye:
 - **Header**: Información de inicio del análisis
 - **Logs en Tiempo Real**: Output completo de cada herramienta
 - **Detección de Errores**: Errores y timeouts capturados
+- **Registro de Privilegios**: Cuándo se ejecutaron comandos con sudo
 - **Resumen por Herramienta**: Estado final, duración, y resultados
 - **Footer**: Resumen final del análisis
 
@@ -83,9 +124,11 @@ Durante la ejecución verás:
 │  2  │ Escaneo Completo - Múltiples herram.  │
 │  3  │ Escaneo de Vulnerabilidades - CVEs    │
 │  4  │ Escaneo Sigiloso - Evasión            │
-│  5  │ Modo Interactivo - Config. avanzada    │
-│  6  │ Estado de Herramientas                │
-│  7  │ Configuración                          │
+│  5  │ Análisis SSL/TLS - Certificados       │
+│  6  │ Modo Interactivo - Config. avanzada   │
+│  7  │ Estado de Herramientas                │
+│  8  │ Estado de Privilegios                 │
+│  9  │ Configuración                         │
 │  0  │ Salir                                 │
 ╰─────┴───────────────────────────────────────╯
 ```
@@ -108,12 +151,12 @@ go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 
 ## 🎯 Tipos de Escaneo
 
-| Tipo                 | Duración  | Descripción                   |
-|----------------------|-----------|-------------------------------|
-| **Rápido**           | 5-15 min  | Puertos comunes (1-1000)      |
-| **Completo**         | 30-60 min | Todos los puertos + servicios |
-| **Vulnerabilidades** | 20-45 min | CVEs con Nuclei + SQLMap      |
-| **Sigiloso**         | 10-30 min | Técnicas de evasión           |
+| Tipo                 | Duración  | Privilegios | Descripción                   |
+|----------------------|-----------|-------------|-------------------------------|
+| **Rápido**           | 5-15 min  | 🔐 Requeridos | Puertos comunes (1-1000) con SYN stealth |
+| **Completo**         | 30-60 min | 🔐 Requeridos | Todos los puertos + servicios + OS |
+| **Vulnerabilidades** | 20-45 min | 🔐 Requeridos | CVEs con Nuclei + SQLMap      |
+| **Sigiloso**         | 10-30 min | 🔐 Requeridos | Técnicas de evasión           |
 
 ## ⚙️ Configuración
 
@@ -134,24 +177,56 @@ output:
 
 ## 🚦 Troubleshooting
 
+### Errores de Privilegios
+
+**Error "Permission denied" o "requires root privileges":**
+```bash
+# El comando único maneja esto automáticamente
+poetry run python aegis_cli.py
+
+# Si aparece el prompt, permite la reejección con sudo
+```
+
+**Sudo no funciona:**
+- Verificar que tu usuario esté en el grupo `sudo`:
+  ```bash
+  groups $USER
+  ```
+- Agregar usuario a sudo (como root):
+  ```bash
+  usermod -aG sudo $USER
+  ```
+
+### Otros Errores Comunes
+
 **Error de módulos:**
 ```bash
 poetry install  # Reinstalar dependencias
 ```
 
 **Herramientas no encontradas:**
-- Verificar instalación con opción 6 en el menú
-- Configurar rutas en `~/.aegis/config.yaml`
-
-**Permisos:**
-```bash
-chmod +x aegis_cli.py
-```
+- El comando único muestra herramientas faltantes automáticamente
+- Instalar herramientas sugeridas según el sistema operativo
+- Configurar rutas en `~/.aegis/config.yaml` si es necesario
 
 **Problemas con logs:**
 - Los logs se guardan automáticamente en `logs/`
 - Verificar permisos de escritura en el directorio
 - Revisar archivo de log para detalles de errores
+
+### Verificación Rápida del Sistema
+
+```bash
+# El comando único hace todas estas verificaciones automáticamente:
+poetry run python aegis_cli.py
+
+# Mostrará:
+# ✅ Versión de Python correcta
+# ✅ Dependencias principales verificadas  
+# 🔑 Usuario normal detectado - privilegios sudo disponibles
+# ✅ Herramientas disponibles: nmap
+# 🎯 Sistema verificado - Iniciando Aegis
+```
 
 ## 🔍 Desarrollo y Contribución
 
@@ -175,3 +250,5 @@ MIT License - Ver archivo LICENSE
 ---
 
 **⚠️ Uso Legal**: Solo para sistemas propios o con autorización explícita.
+
+**🔐 Nota de Seguridad**: Aegis solicita privilegios de administrador para funcionalidad completa de pentesting. Siempre verifica el código fuente antes de ejecutar con sudo.
