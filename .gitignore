@@ -203,4 +203,23 @@ test_temp_*/
 
 # Coverage database
 .coverage.*
-coverage.db 
+coverage.db
+
+# Aegis Pentest specific logs and analysis files
+logs/*.txt
+logs/*.log
+aegis_analysis_*.txt
+aegis_analysis_*.log
+**/aegis_analysis_*.txt
+**/aegis_analysis_*.log
+
+# Tool output files
+/tmp/nikto_output.csv
+/tmp/sqlmap_output/
+/tmp/basic_wordlist.txt
+
+# Scan results and reports
+scan_results_*.json
+scan_results_*.xml
+pentest_report_*.html
+pentest_report_*.pdf 
