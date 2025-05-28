@@ -230,3 +230,4 @@ third-party/
 # Local tool installations
 cloudsploit/
 poc_vulnerability_testing.py
+zap-baseline.py
