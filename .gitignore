@@ -41,8 +41,6 @@ pip-delete-this-directory.txt
 htmlcov/
 .tox/
 .nox/
-.coverage
-.coverage.*
 .cache
 nosetests.xml
 coverage.xml
@@ -222,4 +220,13 @@ aegis_analysis_*.log
 scan_results_*.json
 scan_results_*.xml
 pentest_report_*.html
-pentest_report_*.pdf 
+pentest_report_*.pdf
+
+# External tools and third-party repositories
+# These tools are downloaded/cloned during installation
+external-tools/
+third-party/
+
+# Local tool installations
+cloudsploit/
+poc_vulnerability_testing.py
