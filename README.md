@@ -1,23 +1,22 @@
-# 🛡️ Aegis Pentest Automation
+# Aegis Pentest Automation
 
-CLI interactiva para automatización de pentesting web. Wrapper de herramientas de seguridad con interfaz moderna y **manejo automático de privilegios de administrador**.
+CLI interactiva para automatización de pentesting web. Wrapper de herramientas de seguridad con interfaz moderna y manejo automático de privilegios.
 
-## 🎯 Características
+## Características Principales
 
-- **CLI Interactiva**: Menús intuitivos con Rich
-- **4 Tipos de Escaneo**: Rápido, completo, vulnerabilidades, sigiloso
-- **Herramientas Integradas**: Nmap, Nuclei, Gobuster, Nikto, SQLMap
-- **Visualización Rica**: Tablas, progress bars, colores semánticos
-- **Configuración YAML**: Sistema de configuración flexible
-- **Sistema de Logging**: Monitoreo en tiempo real con logs detallados
-- **🔐 Manejo de Privilegios**: Elevación automática de permisos para herramientas que lo requieren
+- CLI interactiva con menús intuitivos
+- 4 tipos de escaneo: Rápido, completo, vulnerabilidades, sigiloso  
+- Herramientas integradas: Nmap, Nuclei, Gobuster, Nikto, SQLMap
+- Sistema de logging en tiempo real
+- Manejo automático de privilegios de administrador
+- Configuración flexible con YAML
 
-## ⚡ Instalación y Uso
+## Instalación y Uso
 
 ### Requisitos
 - Python 3.9+
 - Poetry
-- Privilegios de administrador/sudo (para funcionalidad completa)
+- Privilegios de administrador/sudo
 
 ### Instalación
 ```bash
@@ -26,116 +25,79 @@ cd Aegis
 poetry install
 ```
 
-### Ejecutar (Comando Único)
+### Ejecución
 ```bash
-# Un solo comando optimizado que maneja todo automáticamente
-poetry run python aegis_cli.py
+poetry run aegis
 ```
 
-**¡Eso es todo!** 🎯 El comando único:
-- ✅ Verifica dependencias automáticamente
-- 🔐 Maneja privilegios de administrador
-- 🛠️ Detecta herramientas disponibles
-- 🚀 Inicia la aplicación optimizada
+El comando verifica dependencias, maneja privilegios y detecta herramientas automáticamente.
 
-## 🔐 Sistema de Privilegios
+## Sistema de Privilegios
 
-### ¿Por qué necesita privilegios de administrador?
-
-Aegis necesita privilegios elevados para:
-- **Escaneos SYN Stealth** (`-sS`) con Nmap
-- **Detección de Sistemas Operativos** (`-O`)
-- **Escaneos UDP** con herramientas especializadas
-- **Funcionalidades avanzadas** de pentesting
-
-### Manejo Automático de Privilegios
-
-✅ **Al inicio**, Aegis verifica automáticamente:
-- Si tienes privilegios de administrador
-- Si `sudo` está disponible
-- Solicita credenciales cuando sea necesario
-
-✅ **Durante ejecución**, las herramientas:
-- Se ejecutan con `sudo` automáticamente si lo requieren
-- Muestran claramente cuándo usan privilegios elevados
-- Manejan errores de permisos de forma inteligente
+Aegis requiere privilegios elevados para:
+- Escaneos SYN Stealth (-sS) con Nmap
+- Detección de sistemas operativos (-O)
+- Escaneos UDP avanzados
+- Funcionalidades completas de pentesting
 
 ### Estados de Privilegios
 
 | Estado | Descripción | Funcionalidad |
 |--------|-------------|---------------|
-| 🔐 **Administrador** | Ejecutándose como root/admin | Completa |
-| 🔑 **Sudo Disponible** | Usuario con sudo configurado | Completa (con solicitud de password) |
-| ⚠️ **Limitado** | Sin privilegios elevados | Parcial (algunos escaneos fallarán) |
+| Administrador | Ejecutándose como root/admin | Completa |
+| Sudo Disponible | Usuario con sudo configurado | Completa |
+| Limitado | Sin privilegios elevados | Parcial |
 
-## 📋 Sistema de Logging Avanzado
+## Sistema de Logging
 
-Aegis incluye un sistema de logging completo que monitorea todas las herramientas en tiempo real.
-
-### Características del Sistema de Logs
-
-- **📊 Monitoreo en Tiempo Real**: Visualización en vivo del estado de herramientas
-- **📁 Logs Unificados**: Todos los outputs en archivos organizados
-- **🚨 Detección de Errores**: Identificación automática de fallos y timeouts
-- **⚡ Thread-Safe**: Manejo seguro de múltiples herramientas simultáneas
-- **🎯 Progreso Visual**: Barras de progreso y estados por herramienta
-- **🔐 Log de Privilegios**: Registro de cuándo se usan permisos elevados
-
-### Ubicación de Logs
-
+Los logs se guardan automáticamente en el directorio `logs/` con formato:
 ```
-logs/
-├── aegis_analysis_20241225_143052.txt
-├── aegis_analysis_20241225_150230.txt
-└── README.md
+logs/aegis_analysis_YYYYMMDD_HHMMSS.txt
 ```
 
-### Contenido de los Logs
+Cada log contiene:
+- Header con información del análisis
+- Outputs limpios de cada herramienta organizados por secciones
+- Errores capturados
+- Duración y estado final
 
-Cada archivo incluye:
-- **Header**: Información de inicio del análisis
-- **Logs en Tiempo Real**: Output completo de cada herramienta
-- **Detección de Errores**: Errores y timeouts capturados
-- **Registro de Privilegios**: Cuándo se ejecutaron comandos con sudo
-- **Resumen por Herramienta**: Estado final, duración, y resultados
-- **Footer**: Resumen final del análisis
-
-### Ejemplo de Monitoreo en Vivo
-
-Durante la ejecución verás:
+### Formato de Logs
 
 ```
-┌────────────────── 🔍 Monitoreo de Herramientas en Tiempo Real ──────────────────┐
-│ Herramienta │ Estado      │ Progreso              │ Última Actividad             │
-├─────────────┼─────────────┼───────────────────────┼─────────────────────────────────┤
-│ nmap        │ EJECUTANDO  │ [████████░░] 80%      │ Scanning 192.168.1.1 port 443 │
-│ nuclei      │ COMPLETADO  │ [██████████] 100%     │ Completado exitosamente       │
-│ gobuster    │ INICIANDO   │ [█░░░░░░░░░] 10%      │ Iniciando escaneo...          │
-└─────────────┴─────────────┴───────────────────────┴─────────────────────────────────┘
+============================================================
+NMAP
+============================================================
+Target: example.com
+Inicio: 2025-05-30 23:43:59
+Fin: 2025-05-30 23:44:14
+Duración: 0:15
+
+OUTPUTS (25 líneas):
+Starting Nmap 7.97 ( https://nmap.org )
+NSE: Loaded 158 scripts for scanning
+[... outputs en crudo de la herramienta ...]
+
+ERRORES (0 líneas):
+
+============================================================
 ```
 
-## 📋 Menú Principal
+## Menú Principal
 
 ```
-╭─────────────────────────────────────────────╮
-│           🎯 Menú Principal                  │
-├─────┬───────────────────────────────────────┤
-│  1  │ Escaneo Rápido - Puertos comunes      │
-│  2  │ Escaneo Completo - Múltiples herram.  │
-│  3  │ Escaneo de Vulnerabilidades - CVEs    │
-│  4  │ Escaneo Sigiloso - Evasión            │
-│  5  │ Análisis SSL/TLS - Certificados       │
-│  6  │ Modo Interactivo - Config. avanzada   │
-│  7  │ Estado de Herramientas                │
-│  8  │ Estado de Privilegios                 │
-│  9  │ Configuración                         │
-│  0  │ Salir                                 │
-╰─────┴───────────────────────────────────────╯
+1. Escaneo Rápido - Puertos comunes
+2. Escaneo Completo - Múltiples herramientas  
+3. Escaneo de Vulnerabilidades - CVEs
+4. Escaneo Sigiloso - Evasión
+5. Análisis SSL/TLS - Certificados
+6. Modo Interactivo - Configuración avanzada
+7. Estado de Herramientas
+8. Estado de Privilegios
+9. Configuración
+0. Salir
 ```
 
-## 🔧 Herramientas Requeridas
-
-Instalar herramientas de pentesting:
+## Herramientas Requeridas
 
 **Linux/Ubuntu:**
 ```bash
@@ -149,16 +111,16 @@ brew install nmap nikto sqlmap gobuster
 go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 ```
 
-## 🎯 Tipos de Escaneo
+## Tipos de Escaneo
 
-| Tipo                 | Duración  | Privilegios | Descripción                   |
-|----------------------|-----------|-------------|-------------------------------|
-| **Rápido**           | 5-15 min  | 🔐 Requeridos | Puertos comunes (1-1000) con SYN stealth |
-| **Completo**         | 30-60 min | 🔐 Requeridos | Todos los puertos + servicios + OS |
-| **Vulnerabilidades** | 20-45 min | 🔐 Requeridos | CVEs con Nuclei + SQLMap      |
-| **Sigiloso**         | 10-30 min | 🔐 Requeridos | Técnicas de evasión           |
+| Tipo | Duración | Privilegios | Descripción |
+|------|----------|-------------|-------------|
+| Rápido | 5-15 min | Requeridos | Puertos comunes (1-1000) |
+| Completo | 30-60 min | Requeridos | Todos los puertos + servicios |
+| Vulnerabilidades | 20-45 min | Requeridos | CVEs con Nuclei + SQLMap |
+| Sigiloso | 10-30 min | Requeridos | Técnicas de evasión |
 
-## ⚙️ Configuración
+## Configuración
 
 Archivo: `~/.aegis/config.yaml`
 ```yaml
@@ -175,80 +137,49 @@ output:
   auto_save: true
 ```
 
-## 🚦 Troubleshooting
+## Solución de Problemas
 
 ### Errores de Privilegios
+El comando principal maneja automáticamente la elevación de privilegios. Si aparece un error de permisos:
 
-**Error "Permission denied" o "requires root privileges":**
 ```bash
-# El comando único maneja esto automáticamente
-poetry run python aegis_cli.py
+# Verificar sudo
+sudo -v
 
-# Si aparece el prompt, permite la reejección con sudo
+# Agregar usuario a sudo (como root)
+usermod -aG sudo $USER
 ```
 
-**Sudo no funciona:**
-- Verificar que tu usuario esté en el grupo `sudo`:
-  ```bash
-  groups $USER
-  ```
-- Agregar usuario a sudo (como root):
-  ```bash
-  usermod -aG sudo $USER
-  ```
+### Errores Comunes
 
-### Otros Errores Comunes
-
-**Error de módulos:**
+**Módulos faltantes:**
 ```bash
-poetry install  # Reinstalar dependencias
+poetry install
 ```
 
 **Herramientas no encontradas:**
-- El comando único muestra herramientas faltantes automáticamente
-- Instalar herramientas sugeridas según el sistema operativo
-- Configurar rutas en `~/.aegis/config.yaml` si es necesario
+- Instalar herramientas según tu sistema operativo
+- Configurar rutas en `~/.aegis/config.yaml`
 
 **Problemas con logs:**
-- Los logs se guardan automáticamente en `logs/`
-- Verificar permisos de escritura en el directorio
-- Revisar archivo de log para detalles de errores
+- Verificar permisos de escritura en directorio `logs/`
+- Revisar archivo de log para detalles
 
-### Verificación Rápida del Sistema
+## Desarrollo
 
+### Verificación de Código
 ```bash
-# El comando único hace todas estas verificaciones automáticamente:
-poetry run python aegis_cli.py
-
-# Mostrará:
-# ✅ Versión de Python correcta
-# ✅ Dependencias principales verificadas  
-# 🔑 Usuario normal detectado - privilegios sudo disponibles
-# ✅ Herramientas disponibles: nmap
-# 🎯 Sistema verificado - Iniciando Aegis
-```
-
-## 🔍 Desarrollo y Contribución
-
-### Verificar Calidad de Código
-
-```bash
-# Linting
 poetry run flake8 aegis_pentest/
-
-# Formateo de código
 poetry run black aegis_pentest/
-
-# Type checking
 poetry run mypy aegis_pentest/
 ```
 
-## 📝 Licencia
+## Licencia
 
-MIT License - Ver archivo LICENSE
+MIT License
 
 ---
 
-**⚠️ Uso Legal**: Solo para sistemas propios o con autorización explícita.
+**Uso Legal**: Solo para sistemas propios o con autorización explícita.
 
-**🔐 Nota de Seguridad**: Aegis solicita privilegios de administrador para funcionalidad completa de pentesting. Siempre verifica el código fuente antes de ejecutar con sudo.
+**Nota de Seguridad**: Aegis solicita privilegios de administrador para funcionalidad completa. Verifica el código antes de ejecutar con sudo.
